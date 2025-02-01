@@ -721,7 +721,7 @@ MonoBehaviour:
   playerHeight: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   grounded: 0
   maxSlopeAngle: 0
   jumpKey: 32

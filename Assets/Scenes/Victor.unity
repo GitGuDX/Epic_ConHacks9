@@ -283,8 +283,9 @@ GameObject:
   - component: {fileID: 444667768}
   - component: {fileID: 444667767}
   - component: {fileID: 444667766}
-  - component: {fileID: 444667765}
   - component: {fileID: 444667764}
+  - component: {fileID: 444667770}
+  - component: {fileID: 444667771}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -319,46 +320,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &444667765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444667763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774a098eeb08b4f1b953be4d2657793b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 5
-  sprintSpeed: 0
-  slideSpeed: 0
-  swingSpeed: 0
-  wallrunSpeed: 0
-  groundDrag: 0
-  speedIncreaseMultiplier: 0
-  slopeIncreaseMultiplier: 0
-  jumpForce: 0
-  jumpCooldown: 0
-  airMultiplier: 0
-  readyToJump: 0
-  crouchSpeed: 0
-  crouchYScale: 0
-  playerHeight: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  grounded: 0
-  maxSlopeAngle: 0
-  jumpKey: 32
-  sprintKey: 304
-  crouchKey: 306
-  orientation: {fileID: 2048206376}
-  state: 0
-  sliding: 0
-  wallrunning: 0
-  swinging: 0
 --- !u!136 &444667766
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -453,6 +414,35 @@ Transform:
   - {fileID: 1737360016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444667770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444667763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2200169a2cc564428a610f37009a463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  sprintSpeed: 8
+  dodgeSpeed: 10
+  dodgeDuration: 0.2
+--- !u!114 &444667771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444667763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7dc36bbf7924e158613d5e7da9ba12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 2073854044}
 --- !u!1 &1737360015
 GameObject:
   m_ObjectHideFlags: 0

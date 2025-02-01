@@ -1,7 +1,8 @@
 using System.Collections;
+using Fusion;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     public float moveSpeed = 5f;
     public float sprintSpeed = 8f;
@@ -11,14 +12,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isDodging = false;
     private Vector3 originalScale;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         originalScale = transform.localScale;
     }
 
-    private void FixedUpdate()
+    public override void FixedUpdateNetwork()
     {
         if (!isDodging)
         {
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
 
-        Vector3 move = new Vector3(moveX, 0, moveZ) * currentSpeed * Time.deltaTime;
+        Vector3 move = new Vector3(moveX, 0, moveZ) * currentSpeed * Runner.DeltaTime;
         rb.MovePosition(transform.position + move);
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
         while (Time.time < startTime + dodgeDuration)
         {
-            rb.MovePosition(transform.position + dodgeMove * Time.deltaTime);
+            rb.MovePosition(transform.position + dodgeMove * Runner.DeltaTime);
             yield return null;
         }
 

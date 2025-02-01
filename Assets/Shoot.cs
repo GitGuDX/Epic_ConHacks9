@@ -1,31 +1,37 @@
 using UnityEngine;
+using System.Collections;
 
 public class Shoot : MonoBehaviour
 {
     public GameObject bullet;
     public Transform shootPoint;
-    public float fireRate = 1f;
-    private float nextFireTime = 0f;
+    public float fireRate = 3f; // Shots per second
+    private float timeBetweenShots;
+    private float nextShotTime;
+    private AmmoSystem ammoSystem;
+
+    void Start()
+    {
+        ammoSystem = GetComponent<AmmoSystem>();
+        timeBetweenShots = 1f / fireRate;
+        nextShotTime = Time.time;
+    }
 
     void Update()
     {
-        if (Time.time >= nextFireTime)
+        if (Input.GetMouseButton(0) && Time.time >= nextShotTime && ammoSystem.CanShoot())
         {
-            if (Input.GetMouseButton(0))
-            {
-                ShootBullet();
-                nextFireTime = Time.time + 1f / fireRate;
-            }
+            ShootBullet();
+            ammoSystem.UseAmmo();
+            nextShotTime = Time.time + timeBetweenShots;
         }
     }
 
     void ShootBullet()
     {
         GameObject instBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        Vector3 direction = transform.forward; // Shoot in the player's forward direction
+        Vector3 direction = transform.forward;
         instBullet.GetComponent<Bullet>().move = direction;
-
-        // Ignore collision between the player and the bullet
         Physics.IgnoreCollision(instBullet.GetComponent<Collider>(), GetComponent<Collider>());
     }
 }

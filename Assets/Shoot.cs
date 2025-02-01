@@ -27,7 +27,7 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    void ShootBullet()
+    protected virtual void ShootBullet()
     {
         GameObject instBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         Vector3 direction = transform.forward;

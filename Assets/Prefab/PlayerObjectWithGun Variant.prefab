@@ -199,6 +199,9 @@ MonoBehaviour:
   bullet: {fileID: 6177995564417039293, guid: 019365582c89d4d4fb25ce45b00af6a2, type: 3}
   shootPoint: {fileID: 2530038278727628115}
   fireRate: 10
+  weaponType: 0
+  pelletCount: 5
+  spreadAngle: 15
 --- !u!114 &3725995960039819280
 MonoBehaviour:
   m_ObjectHideFlags: 0

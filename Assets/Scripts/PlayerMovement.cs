@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using Fusion;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -8,6 +10,8 @@ public class PlayerMovement : NetworkBehaviour
     public float sprintSpeed = 8f;
     public float dodgeSpeed = 10f;
     public float dodgeDuration = 0.2f;
+
+    private TextMeshProUGUI pingText;
     private Rigidbody rb;
     private bool isDodging = false;
     private Vector3 originalScale;
@@ -17,10 +21,12 @@ public class PlayerMovement : NetworkBehaviour
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         originalScale = transform.localScale;
+        pingText = GameObject.Find("PingText").GetComponent<TextMeshProUGUI>();
     }
 
     public override void FixedUpdateNetwork()
     {
+        pingText.text = $"{Math.Round(Runner.GetPlayerRtt(default) * 1000)}ms";
         if (!isDodging)
         {
             MovePlayer();
@@ -35,7 +41,9 @@ public class PlayerMovement : NetworkBehaviour
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
 
         Vector3 move = new Vector3(moveX, 0, moveZ) * currentSpeed * Runner.DeltaTime;
-        rb.MovePosition(transform.position + move);
+        if (move != Vector3.zero) {
+            rb.MovePosition(transform.position + move);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

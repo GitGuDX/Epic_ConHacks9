@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Gunfight.sln"
+    "dotnet.defaultSolution": "Epic_ConHacks9.sln"
 }

@@ -14,6 +14,7 @@ public class PlayerMovement : NetworkBehaviour
     private TextMeshProUGUI pingText;
     private Rigidbody rb;
     private bool isDodging = false;
+    private bool isDodgingKeyPressed = false;
     private Vector3 originalScale;
 
     private void Awake()
@@ -24,9 +25,18 @@ public class PlayerMovement : NetworkBehaviour
         pingText = GameObject.Find("PingText").GetComponent<TextMeshProUGUI>();
     }
 
+    public Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isDodgingKeyPressed = true;
+        }
+    }
+
     public override void FixedUpdateNetwork()
     {
         pingText.text = $"{Math.Round(Runner.GetPlayerRtt(default) * 1000)}ms";
+
         if (!isDodging)
         {
             MovePlayer();
@@ -45,10 +55,11 @@ public class PlayerMovement : NetworkBehaviour
             rb.MovePosition(transform.position + move);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isDodgingKeyPressed)
         {
             StartCoroutine(Dodge(move));
         }
+        isDodgingKeyPressed = false;
     }
 
     private IEnumerator Dodge(Vector3 direction)

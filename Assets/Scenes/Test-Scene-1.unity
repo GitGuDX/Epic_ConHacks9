@@ -517,7 +517,6 @@ GameObject:
   - component: {fileID: 852726937}
   - component: {fileID: 852726936}
   - component: {fileID: 852726935}
-  - component: {fileID: 852726939}
   m_Layer: 6
   m_Name: Floor
   m_TagString: Ground
@@ -615,18 +614,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &852726939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852726934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e723037a102fe474b9bec697bbeff1c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &885350016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6507885794113470305, guid: beb5285061729ea4daa76f392245801c, type: 3}
@@ -1121,6 +1108,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1755463203}
+    - target: {fileID: 3819020002724236797, guid: beb5285061729ea4daa76f392245801c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5956906765919557002, guid: beb5285061729ea4daa76f392245801c, type: 3}
       propertyPath: m_Name
       value: PlayerObject

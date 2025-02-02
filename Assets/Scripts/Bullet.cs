@@ -6,7 +6,7 @@ using System.Collections;
 public class Bullet : NetworkBehaviour
 {
     private GunData gunData;
-    public float speed = 20f;
+    public float speed = 10f;
     public float lifeTime;
     [Networked] 
     public Vector3 MovementDirection { get; set; }

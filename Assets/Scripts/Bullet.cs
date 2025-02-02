@@ -1,30 +1,38 @@
 using UnityEngine;
+using Fusion;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Bullet : MonoBehaviour
+public class Bullet : NetworkBehaviour
 {
-    [HideInInspector]
-    public Vector3 move;
-    public float speed;
+    public float speed = 20f;
 
-    Rigidbody rb;
+    [Networked] 
+    public Vector3 MovementDirection { get; set; }
 
-    void Start()
+    public override void Spawned()
     {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    void Update()
-    {
-        rb.MovePosition(transform.position + move * speed * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        // Set initial direction without authority check
+        MovementDirection = transform.forward;
+        
+        // Destroy bullet after 5 seconds
+        if (Object.HasStateAuthority)
         {
-            other.GetComponent<Lives>().RPC_Damage();
-            Destroy(gameObject);
+            StartCoroutine(DestroyAfterDelay());
+        }
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        transform.position += MovementDirection * speed * Runner.DeltaTime;
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        if (Runner != null && Object != null)
+        {
+            Runner.Despawn(Object);
         }
     }
 }

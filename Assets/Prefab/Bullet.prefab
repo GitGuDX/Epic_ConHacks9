@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b914d9ef84842c2a62cf32ba3894e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move: {x: 0, y: 0, z: 0}
   speed: 60
+  _MovementDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &-4375908527872156677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 6041496578264325145}
   - {fileID: 3510894576072236788}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &3510894576072236788

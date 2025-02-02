@@ -52,7 +52,8 @@ public class Shoot : NetworkBehaviour
 
     private void ShootRifle()
     {
-        Runner.Spawn(bullet, shootPoint.position, shootPoint.rotation);
+        var spawnedBullet = Runner.Spawn(bullet, shootPoint.position, shootPoint.rotation);
+        spawnedBullet.GetComponent<Bullet>().MovementDirection = shootPoint.forward;
     }
 
     private void ShootShotgun()
@@ -61,9 +62,10 @@ public class Shoot : NetworkBehaviour
         {
             float randomSpreadX = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
             float randomSpreadY = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
-
+            
             Quaternion spreadRotation = Quaternion.Euler(randomSpreadX, randomSpreadY, 0) * shootPoint.rotation;
-            Runner.Spawn(bullet, shootPoint.position, spreadRotation);
+            var spawnedBullet = Runner.Spawn(bullet, shootPoint.position, spreadRotation);
+            spawnedBullet.GetComponent<Bullet>().MovementDirection = spreadRotation * Vector3.forward;
         }
     }
 

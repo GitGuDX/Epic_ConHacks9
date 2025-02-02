@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Lives : NetworkBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private float invulnerabilityDuration = 2f;
     public GameObject[] livesUI;
 
@@ -14,7 +14,7 @@ public class Lives : NetworkBehaviour
     public int lives {get; set;} = 3;
     private TickTimer invulnerabilityTimer;
 
-    
+
     public override void FixedUpdateNetwork()
     {
         // If the invulnerability timer has expired, set isInvulnerable to false
@@ -32,13 +32,13 @@ public class Lives : NetworkBehaviour
 
     public void UpdateLivesUI() {
         if (lives < 1) {
-            livesUI[0].SetActive(false);
+            GameObject.Find("Heart1").SetActive(false);
         }
         else if (lives < 2) {
-            livesUI[1].SetActive(false);
+            GameObject.Find("Heart2").SetActive(false);
         }
         else if (lives < 3) {
-            livesUI[2].SetActive(false);
+            GameObject.Find("Heart3").SetActive(false);
         }
     }
 

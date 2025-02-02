@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoText: {fileID: 2953081662579296417}
+  ammoSystem: {fileID: 0}
 --- !u!1 &4585329457836809178
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +132,7 @@ GameObject:
   - component: {fileID: 461734648699638699}
   - component: {fileID: 4323970014442310071}
   m_Layer: 5
-  m_Name: Heart
+  m_Name: Heart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +207,7 @@ GameObject:
   - component: {fileID: 2421997457697477057}
   - component: {fileID: 9059104362792513052}
   m_Layer: 5
-  m_Name: Heart (1)
+  m_Name: Heart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,7 +418,7 @@ GameObject:
   - component: {fileID: 1496813118816907450}
   - component: {fileID: 5121158283692624678}
   m_Layer: 5
-  m_Name: Heart (2)
+  m_Name: Heart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

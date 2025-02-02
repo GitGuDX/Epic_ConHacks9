@@ -20,10 +20,17 @@ public class WeaponSpawnPoint : NetworkBehaviour
     [Networked]
     private bool IsOccupied { get; set; } = false;
 
-    void Update() {
-        if (SpawnedWeapon != null) {
-            SpawnedWeapon.transform.position = transform.position;
+    public override void Spawned() {
+        if (Object.HasStateAuthority)
+        {
+            StartSpawnTimer();
         }
+    }
+
+    void Update() {
+        try {
+            SpawnedWeapon.transform.position = transform.position;
+        } catch {}
     }
 
     public override void FixedUpdateNetwork()
@@ -60,14 +67,6 @@ public class WeaponSpawnPoint : NetworkBehaviour
 
         SpawnedWeapon = weaponObject;
         IsOccupied = true;
-    }
-
-    public override void Spawned()
-    {
-        if (Object.HasStateAuthority)
-        {
-            StartSpawnTimer();
-        }
     }
 
     public void OnWeaponPickedUp()

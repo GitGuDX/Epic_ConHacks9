@@ -67,8 +67,7 @@ public class PlayerMovement : NetworkBehaviour
         float moveZ = Input.GetAxis("Vertical");
 
         // Update animation state
-        bool isMoving = Mathf.Abs(moveX) > 0.1f || Mathf.Abs(moveZ) > 0.1f;
-        Debug.Log(isMoving);
+        bool isMoving = rb.linearVelocity.magnitude > 0.1f;
         animator.SetBool(IsWalking, isMoving);
 
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;

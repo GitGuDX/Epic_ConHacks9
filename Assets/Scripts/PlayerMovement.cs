@@ -16,6 +16,7 @@ public class PlayerMovement : NetworkBehaviour
     private bool isDodging = false;
     private bool isDodgingKeyPressed = false;
     private Vector3 originalScale;
+    private Camera playerCamera;
 
     private void Awake()
     {
@@ -25,7 +26,17 @@ public class PlayerMovement : NetworkBehaviour
         pingText = GameObject.Find("PingText").GetComponent<TextMeshProUGUI>();
     }
 
-    public Update()
+    public override void Spawned()
+    {
+        if (HasStateAuthority)
+        {
+            Debug.Log(Camera.main);
+            playerCamera = Camera.main;
+            playerCamera.GetComponent<CameraFollow>().player = transform;
+        }
+    }
+
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -5,19 +5,22 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : NetworkBehaviour
 {
+    private GunData gunData;
     public float speed = 20f;
-
-    private GunData currentGunData;
-
+    public float lifeTime;
     [Networked] 
     public Vector3 MovementDirection { get; set; }
 
+    public void Initialize(GunData gunData)
+        {
+            lifeTime = gunData.lifeTime;
+        }
     public override void Spawned()
     {
         // Set initial direction without authority check
         MovementDirection = transform.forward;
         
-        // Destroy bullet after lifetime
+        // Destroy bullet after 5 seconds
         if (Object.HasStateAuthority)
         {
             StartCoroutine(DestroyAfterDelay());
@@ -43,7 +46,7 @@ public class Bullet : NetworkBehaviour
 
     private IEnumerator DestroyAfterDelay()
     {
-        yield return new WaitForSeconds(currentGunData.lifeTime);
+        yield return new WaitForSeconds(lifeTime);
         if (Runner != null && Object != null)
         {
             Runner.Despawn(Object);

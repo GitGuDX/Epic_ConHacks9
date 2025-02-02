@@ -47,6 +47,9 @@ public class PlayerMovement : NetworkBehaviour
 
     public void Update()
     {
+
+        bool isMoving = rb.linearVelocity.magnitude > 0.1f;
+        animator.SetBool(IsWalking, isMoving);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isDodgingKeyPressed = true;
@@ -65,10 +68,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-
-        // Update animation state
-        bool isMoving = rb.linearVelocity.magnitude > 0.1f;
-        animator.SetBool(IsWalking, isMoving);
 
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
 

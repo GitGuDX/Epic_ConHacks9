@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37d04963726fa84493c96d4a9a240ef, type: 3}
+  m_Name: AK
+  m_EditorClassIdentifier: 
+  gunName: AK-47
+  gunPrefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
+  weaponType: 2
+  fireRate: 10
+  magazineSize: 30
+  maxTotalAmmo: 30
+  reloadTime: 2
+  pelletCount: 0
+  spreadAngle: 0

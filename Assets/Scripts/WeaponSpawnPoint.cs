@@ -15,17 +15,13 @@ public class WeaponSpawnPoint : NetworkBehaviour
     private NetworkObject SpawnedWeapon { get; set; }
     
     [Networked]
-    private float NextSpawnTime { get; set; }
+    private float NextSpawnTime { get; set; } = 0;
     
     [Networked]
-    private bool IsOccupied { get; set; }
+    private bool IsOccupied { get; set; } = false;
 
     public override void Spawned()
     {
-        if (Object.HasStateAuthority)
-        {
-            StartSpawnTimer();
-        }
     }
 
     public override void FixedUpdateNetwork()
@@ -51,6 +47,12 @@ public class WeaponSpawnPoint : NetworkBehaviour
 
         SpawnedWeapon = weaponObject;
         IsOccupied = true;
+    }
+
+    public void OnWeaponPickedUp()
+    {
+        IsOccupied = false;
+        StartSpawnTimer();
     }
 
     private void StartSpawnTimer()

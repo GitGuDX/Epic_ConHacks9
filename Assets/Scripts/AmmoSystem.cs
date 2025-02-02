@@ -1,23 +1,29 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class AmmoSystem : MonoBehaviour
 {
-    public int magazineSize = 30;
-    public int currentAmmo;
-    public int totalAmmo = 90;
-    public float reloadTime = 2f;
-    private bool isReloading = false;
+    private GunData currentGunData;
+    private Boolean isReloading = false;
+    public int currentAmmo { get; private set; }
+    public int totalAmmo { get; private set; }
 
+    public void SetGunData(GunData newGunData)
+    {
+        currentGunData = newGunData;
+        currentAmmo = newGunData.magazineSize;
+        totalAmmo = newGunData.maxTotalAmmo;
+    }
     void Start()
     {
-        currentAmmo = magazineSize;
+        SetGunData(currentGunData);
     }
 
     void Update()
     {
         //Checks if the player presses the R key and the player is not reloading and the current ammo is less than the magazine size
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < magazineSize)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < currentGunData.magazineSize)
         {
             //Starts the reload coroutine
             StartCoroutine(Reload());
@@ -30,10 +36,10 @@ public class AmmoSystem : MonoBehaviour
         Debug.Log("Reloading...");
 
         //Waits for the reload time before continuing
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(currentGunData.reloadTime);
 
         //Calculates the amount of ammo needed to fill the magazine
-        int ammoNeeded = magazineSize - currentAmmo;
+        int ammoNeeded = currentGunData.magazineSize - currentAmmo;
         if (totalAmmo >= ammoNeeded)
         {
             currentAmmo += ammoNeeded;

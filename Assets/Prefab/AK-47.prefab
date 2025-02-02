@@ -120,8 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9a79d099547c4fab89537922c2a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 4601417146949781777}
-  gunType: 0
+  gunData: {fileID: 11400000, guid: 4420b1dd00d547d429ff2a4f239b1cb8, type: 2}
 --- !u!114 &4618151557591470181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 765313793
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0

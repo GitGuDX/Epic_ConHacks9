@@ -28,10 +28,20 @@ public class PlayerMovement : NetworkBehaviour
     public override void Spawned()
     {
         if (HasStateAuthority)
+    {
+        // Find the camera target child object
+        Transform cameraTarget = transform.Find("Player");
+        if (cameraTarget != null)
         {
-            Camera.main.GetComponent<CameraFollow>().player = transform;
-            GetComponent<Renderer>().material.color = Color.blue;
+            Camera.main.GetComponent<CameraFollow>().player = cameraTarget;
         }
+        else
+        {
+            Debug.LogError("CameraTarget not found as child of player!");
+        }
+        
+        GetComponent<Renderer>().material.color = Color.blue;
+    }
     }
 
     public void Update()

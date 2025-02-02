@@ -1,52 +1,71 @@
 using UnityEngine;
-
-public class GunManager : MonoBehaviour
+using Fusion;
+public class GunManager : NetworkBehaviour
 {
     public GameObject gunPrefab;
     public Transform gunHolster;
     private GameObject currentGun;
     private Shoot shootScript;
+    private GunData currentGunData;
+    private AmmoSystem ammoSystem;
+
 
     void Start()
     {
         shootScript = GetComponent<Shoot>();
+        ammoSystem = GetComponent<AmmoSystem>();  // AmmoSystem on player
     }
 
     void OnTriggerEnter(Collider other)
     {
+        // Check if object has state authority
+        if (!Object.HasStateAuthority) return;
         if (other == null) return;
 
         Pickupable pickupable = other.GetComponent<Pickupable>();
-        if (pickupable != null)
+        if (pickupable == null)
+        {
+            Debug.LogWarning("No Pickupable component found on: " + other.name);
+            return;
+        }
+         if (pickupable?.gunData == null)
+        {
+            Debug.LogError("No GunData assigned to Pickupable on: " + other.name);
+            return;
+        }
         {
             Transform spawnPoint = other.transform.parent;
 
             // Store reference before destroying
-            ItemSpawner spawner = FindFirstObjectByType<ItemSpawner>();
+            WeaponSpawnPoint spawner = spawnPoint?.GetComponent<WeaponSpawnPoint>();
 
             // Update gun and shooting component
             if (currentGun != null)
+            {
                 Destroy(currentGun);
+            }
 
-            SpawnGun(pickupable.gunPrefab);
+            // Spawn new gun and update data
+            PickupGun(pickupable.gunData.gunPrefab);
+            
             if (shootScript != null)
             {
-                shootScript.weaponType = pickupable.gunType;
+                currentGunData = pickupable.gunData;
+                shootScript.SetGunData(currentGunData);
                 shootScript.SetHasGun(true);
+                ammoSystem.SetGunData(currentGunData);
             }
 
-            // Free spawn point before destroying pickup
-            if (spawner != null && spawnPoint != null)
-            {
-                spawner.FreeSpawnPoint(spawnPoint);
-            }
+            // Notify spawn point of pickup
+            spawner?.OnWeaponPickedUp();
 
             // Destroy pickup last
-            Destroy(other.gameObject);
+            Runner.Despawn(other.GetComponent<NetworkObject>());
         }
     }
 
-    public void SpawnGun(GameObject gunToSpawn)
+    //Spawn gun at holster position when picked up
+    public void PickupGun(GameObject gunToSpawn)
     {
         currentGun = Instantiate(gunToSpawn, gunHolster.position, gunHolster.rotation);
         currentGun.transform.SetParent(gunHolster);

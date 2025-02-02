@@ -5,11 +5,7 @@ public class Shoot : NetworkBehaviour
 {
     public GameObject bullet;
     public Transform shootPoint;
-    public float fireRate = 3f;
-    public WeaponType weaponType = WeaponType.Rifle;
-    public int pelletCount = 5;
-    public float spreadAngle = 15f;
-    private float timeBetweenShots;
+    private GunData currentGunData;
     private float nextShotTime;
     private AmmoSystem ammoSystem;
     private bool hasGun = true;
@@ -18,8 +14,6 @@ public class Shoot : NetworkBehaviour
     void Awake()
     {
         ammoSystem = GetComponent<AmmoSystem>();
-        timeBetweenShots = 1f / fireRate;
-        nextShotTime = Time.time;
     }
 
     void Update() {
@@ -32,19 +26,20 @@ public class Shoot : NetworkBehaviour
         {
             ShootBullet();
             ammoSystem.UseAmmo();
-            nextShotTime = Time.time + timeBetweenShots;
+            nextShotTime = Time.time + (1f / currentGunData.fireRate);
         }
         isShooting = false;
     }
 
+  
     public void SetHasGun(bool value)
     {
         hasGun = value;
     }
 
-     protected virtual void ShootBullet()
+     protected void ShootBullet()
     {
-        switch (weaponType)
+        switch (currentGunData.weaponType)
         {
             case WeaponType.Rifle:
                 ShootRifle();
@@ -57,30 +52,24 @@ public class Shoot : NetworkBehaviour
 
     private void ShootRifle()
     {
-        GameObject instBullet = Runner.Spawn(bullet, shootPoint.position, shootPoint.rotation).gameObject;
-        Vector3 direction = transform.forward;
-        instBullet.GetComponent<Bullet>().move = direction;
-        Physics.IgnoreCollision(instBullet.GetComponent<Collider>(), GetComponent<Collider>());
+        Runner.Spawn(bullet, shootPoint.position, shootPoint.rotation);
     }
 
     private void ShootShotgun()
     {
-        for (int i = 0; i < pelletCount; i++)
+        for (int i = 0; i < currentGunData.pelletCount; i++)
         {
-            float randomSpreadX = Random.Range(-spreadAngle, spreadAngle);
-            float randomSpreadY = Random.Range(-spreadAngle, spreadAngle);
+            float randomSpreadX = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
+            float randomSpreadY = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
 
-            Quaternion spreadRotation = Quaternion.Euler(randomSpreadX, randomSpreadY, 0) * transform.rotation;
-            GameObject instBullet = Runner.Spawn(bullet, shootPoint.position, spreadRotation).gameObject;
-            Vector3 direction = spreadRotation * Vector3.forward;
-            instBullet.GetComponent<Bullet>().move = direction;
-            Physics.IgnoreCollision(instBullet.GetComponent<Collider>(), GetComponent<Collider>());
+            Quaternion spreadRotation = Quaternion.Euler(randomSpreadX, randomSpreadY, 0) * shootPoint.rotation;
+            Runner.Spawn(bullet, shootPoint.position, spreadRotation);
         }
+    }
+
+    public void SetGunData(GunData newGunData)
+    {
+        currentGunData = newGunData;
     }
 }
 
-public enum WeaponType
-{
-    Rifle,
-    Shotgun
-}

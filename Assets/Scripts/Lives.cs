@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Lives : MonoBehaviour
 {
-    public GamesObject[] livesUI;
+    public GameObject[] livesUI;
     [SerializeField] 
     private int lives = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,13 +20,13 @@ public class Lives : MonoBehaviour
 
     public void UpdateLivesUI() {
         if (lives < 1) {
-            Destroy(Lives[0].gameObject);
+            livesUI[0].SetActive(false);
         }
         else if (lives < 2) {
-            Destroy(Lives[1].gameObject);
+            livesUI[1].SetActive(false);
         }
         else if (lives < 3) {
-            Destroy(Lives[2].gameObject);
+            livesUI[2].SetActive(false);
         }
 
     }

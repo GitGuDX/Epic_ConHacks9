@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Fusion;
 
-public class ItemSpawner : MonoBehaviour
+public class ItemSpawner : NetworkBehaviour
 {
     [System.Serializable]
     public class SpawnableItem
@@ -16,9 +17,11 @@ public class ItemSpawner : MonoBehaviour
     public float maxSpawnTime = 30f;
     
     private List<Transform> availableSpawnPoints;
-    private float nextSpawnTime;
+    [Networked]
+    private float nextSpawnTime { get; set; }
+    
 
-    void Start()
+    void Awake()
     {
         availableSpawnPoints = new List<Transform>(spawnPoints);
         SetNextSpawnTime();
@@ -61,9 +64,11 @@ public class ItemSpawner : MonoBehaviour
         }
 
         // Spawn the item
-        GameObject spawnedItem = Instantiate(selectedItem.itemPrefab, 
+        Runner.Spawn(selectedItem.itemPrefab, 
             spawnPoint.position, 
             spawnPoint.rotation);
+
+        
 
         // Remove used spawn point
         availableSpawnPoints.RemoveAt(spawnIndex);

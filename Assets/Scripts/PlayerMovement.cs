@@ -29,7 +29,17 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (HasStateAuthority)
         {
-            Camera.main.GetComponent<CameraFollow>().player = transform;
+            // Find the camera target child object
+            Transform cameraTarget = transform.Find("CameraTarget");
+            if (cameraTarget != null)
+            {
+                Camera.main.GetComponent<CameraFollow>().player = cameraTarget;
+            }
+            else
+            {
+                Debug.LogError("CameraTarget not found as child of player!");
+            }
+
             GetComponent<Renderer>().material.color = Color.blue;
         }
     }

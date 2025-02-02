@@ -1,45 +1,45 @@
+using Fusion;
 using UnityEngine;
-using System.Collections;
 
-public class Shoot : MonoBehaviour
+public class Shoot : NetworkBehaviour
 {
     public GameObject bullet;
     public Transform shootPoint;
-    public float fireRate = 3f;
-    public WeaponType weaponType = WeaponType.Rifle;
-    public int pelletCount = 5;
-    public float spreadAngle = 15f;
-    private float timeBetweenShots;
+    private GunData currentGunData;
     private float nextShotTime;
     private AmmoSystem ammoSystem;
+    private bool hasGun = true;
+    private bool isShooting = false;
 
-    void Start()
+    void Awake()
     {
         ammoSystem = GetComponent<AmmoSystem>();
-        timeBetweenShots = 1f / fireRate;
-        nextShotTime = Time.time;
     }
 
-    private bool hasGun = false;
+    void Update() {
+        isShooting = Input.GetMouseButton(0);
+    }
 
-    void Update()
+    public override void FixedUpdateNetwork()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextShotTime && ammoSystem.CanShoot() && hasGun)
+        if (isShooting && Time.time >= nextShotTime && ammoSystem.CanShoot() && hasGun)
         {
             ShootBullet();
             ammoSystem.UseAmmo();
-            nextShotTime = Time.time + timeBetweenShots;
+            nextShotTime = Time.time + (1f / currentGunData.fireRate);
         }
+        isShooting = false;
     }
 
+  
     public void SetHasGun(bool value)
     {
         hasGun = value;
     }
 
-     protected virtual void ShootBullet()
+     protected void ShootBullet()
     {
-        switch (weaponType)
+        switch (currentGunData.weaponType)
         {
             case WeaponType.Rifle:
                 ShootRifle();
@@ -52,30 +52,26 @@ public class Shoot : MonoBehaviour
 
     private void ShootRifle()
     {
-        GameObject instBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        Vector3 direction = transform.forward;
-        instBullet.GetComponent<Bullet>().move = direction;
-        Physics.IgnoreCollision(instBullet.GetComponent<Collider>(), GetComponent<Collider>());
+        var spawnedBullet = Runner.Spawn(bullet, shootPoint.position, shootPoint.rotation);
+        spawnedBullet.GetComponent<Bullet>().MovementDirection = shootPoint.forward;
     }
 
     private void ShootShotgun()
     {
-        for (int i = 0; i < pelletCount; i++)
+        for (int i = 0; i < currentGunData.pelletCount; i++)
         {
-            float randomSpreadX = Random.Range(-spreadAngle, spreadAngle);
-            float randomSpreadY = Random.Range(-spreadAngle, spreadAngle);
+            float randomSpreadX = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
+            float randomSpreadY = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
             
-            Quaternion spreadRotation = Quaternion.Euler(randomSpreadX, randomSpreadY, 0) * transform.rotation;
-            GameObject instBullet = Instantiate(bullet, shootPoint.position, spreadRotation);
-            Vector3 direction = spreadRotation * Vector3.forward;
-            instBullet.GetComponent<Bullet>().move = direction;
-            Physics.IgnoreCollision(instBullet.GetComponent<Collider>(), GetComponent<Collider>());
+            Quaternion spreadRotation = Quaternion.Euler(randomSpreadX, randomSpreadY, 0) * shootPoint.rotation;
+            var spawnedBullet = Runner.Spawn(bullet, shootPoint.position, spreadRotation);
+            spawnedBullet.GetComponent<Bullet>().MovementDirection = spreadRotation * Vector3.forward;
         }
+    }
+
+    public void SetGunData(GunData newGunData)
+    {
+        currentGunData = newGunData;
     }
 }
 
-public enum WeaponType
-{
-    Rifle,
-    Shotgun
-}

@@ -4,7 +4,7 @@ using TMPro;
 public class AmmoUI : MonoBehaviour
 {
     public TextMeshProUGUI ammoText;
-    private AmmoSystem ammoSystem;
+    public AmmoSystem ammoSystem;
 
     void Start()
     {

@@ -10,6 +10,7 @@ public class GunData : ScriptableObject
     public int magazineSize;
     public int maxTotalAmmo;
     public float reloadTime;
+    public float lifeTime;
     
     // Shotgun specific
     public int pelletCount;

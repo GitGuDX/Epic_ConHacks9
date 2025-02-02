@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ak47Prefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
   shotgunPrefab: {fileID: 6142003397665915863, guid: c38d1d21c6b84bf4e83d705c6812ca10, type: 3}
+  pistolPrefab: {fileID: 2074594907806527387, guid: c41a42e81e415754399599e3bbd70697, type: 3}
   minSpawnTime: 5
   maxSpawnTime: 10
 --- !u!4 &67467376
@@ -1772,6 +1773,87 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 5, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &83202107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -5227273860689040037, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: SortKey
+      value: 2719814608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -52.852386
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36675012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.592892
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693812777351918881, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074594907806527387, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: m_Name
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876618189268455230, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
+    - target: {fileID: 5590999132883064069, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
+    - target: {fileID: 6951986184914374001, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
+    - target: {fileID: 8567668824705325945, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dffdf6d5c9b17fe49870ee7942509a82, type: 2}
+    - target: {fileID: 8913606745526857947, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c41a42e81e415754399599e3bbd70697, type: 3}
 --- !u!4 &90914000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3738add806d73ad4da248f1c34c38b31, type: 3}
@@ -7715,6 +7797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ak47Prefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
   shotgunPrefab: {fileID: 6142003397665915863, guid: c38d1d21c6b84bf4e83d705c6812ca10, type: 3}
+  pistolPrefab: {fileID: 2074594907806527387, guid: c41a42e81e415754399599e3bbd70697, type: 3}
   minSpawnTime: 5
   maxSpawnTime: 10
 --- !u!1 &476086180 stripped
@@ -33383,6 +33466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ak47Prefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
   shotgunPrefab: {fileID: 6142003397665915863, guid: c38d1d21c6b84bf4e83d705c6812ca10, type: 3}
+  pistolPrefab: {fileID: 2074594907806527387, guid: c41a42e81e415754399599e3bbd70697, type: 3}
   minSpawnTime: 5
   maxSpawnTime: 10
 --- !u!4 &2098303051
@@ -34101,3 +34185,4 @@ SceneRoots:
   - {fileID: 475227142}
   - {fileID: 2098303051}
   - {fileID: 67467376}
+  - {fileID: 83202107}

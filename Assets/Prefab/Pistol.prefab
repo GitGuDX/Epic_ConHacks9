@@ -64,10 +64,30 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3195828791156449804, guid: f9a7bd34d4b8ac5438f459f282abd23c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
+    - target: {fileID: -1806680513116206669, guid: f9a7bd34d4b8ac5438f459f282abd23c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dffdf6d5c9b17fe49870ee7942509a82, type: 2}
+    - target: {fileID: -1461304994638716399, guid: f9a7bd34d4b8ac5438f459f282abd23c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
+    - target: {fileID: -1120989108687609925, guid: f9a7bd34d4b8ac5438f459f282abd23c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
     - target: {fileID: 919132149155446097, guid: f9a7bd34d4b8ac5438f459f282abd23c, type: 3}
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 6745302439343835087, guid: f9a7bd34d4b8ac5438f459f282abd23c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bfdf5f5e55288bb4cbf9929cf47e6fd7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

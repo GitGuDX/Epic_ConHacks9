@@ -15,9 +15,10 @@ MonoBehaviour:
   gunName: AK-47
   gunPrefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
   weaponType: 2
-  fireRate: 10
+  fireRate: 12
   magazineSize: 30
   maxTotalAmmo: 30
   reloadTime: 2
+  lifeTime: 1
   pelletCount: 0
-  spreadAngle: 0
+  spreadAngle: 2

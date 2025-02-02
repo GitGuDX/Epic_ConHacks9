@@ -293,8 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8236020d3157ea04c9cc1303e570971e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 0}
+  gunPrefab: {fileID: 2074594907806527387, guid: c41a42e81e415754399599e3bbd70697, type: 3}
   gunHolster: {fileID: 3070507772160267751}
+  defaultPistolData: {fileID: 11400000, guid: 7c58f15e2028fb64fbf37c4679dfb9c7, type: 2}
 --- !u!136 &2976767735820497723
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -330,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30220c0440b254ff3906705814a5805c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invulnerabilityDuration: 2
   livesUI:
   - {fileID: 0}
   - {fileID: 0}

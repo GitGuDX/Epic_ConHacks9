@@ -7,6 +7,8 @@ public class Bullet : NetworkBehaviour
 {
     public float speed = 20f;
 
+    private GunData currentGunData;
+
     [Networked] 
     public Vector3 MovementDirection { get; set; }
 
@@ -15,7 +17,7 @@ public class Bullet : NetworkBehaviour
         // Set initial direction without authority check
         MovementDirection = transform.forward;
         
-        // Destroy bullet after 5 seconds
+        // Destroy bullet after lifetime
         if (Object.HasStateAuthority)
         {
             StartCoroutine(DestroyAfterDelay());
@@ -41,7 +43,7 @@ public class Bullet : NetworkBehaviour
 
     private IEnumerator DestroyAfterDelay()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(currentGunData.lifeTime);
         if (Runner != null && Object != null)
         {
             Runner.Despawn(Object);

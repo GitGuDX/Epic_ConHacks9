@@ -19,5 +19,6 @@ MonoBehaviour:
   magazineSize: 12
   maxTotalAmmo: 24
   reloadTime: 1
+  lifeTime: 1
   pelletCount: 0
-  spreadAngle: 0
+  spreadAngle: 2

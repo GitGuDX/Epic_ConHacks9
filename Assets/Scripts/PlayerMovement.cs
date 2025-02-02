@@ -30,7 +30,7 @@ public class PlayerMovement : NetworkBehaviour
         if (HasStateAuthority)
     {
         // Find the camera target child object
-        Transform cameraTarget = transform.Find("Player");
+        Transform cameraTarget = transform.Find("CameraTarget");
         if (cameraTarget != null)
         {
             Camera.main.GetComponent<CameraFollow>().player = cameraTarget;

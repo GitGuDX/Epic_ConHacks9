@@ -75,6 +75,7 @@ Transform:
   m_Children:
   - {fileID: 3070507772160267751}
   - {fileID: 4128450898368198317}
+  - {fileID: 7342529295031117114}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5530084565520319846
@@ -220,10 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9933f9b5d86554d9e048000209e933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magazineSize: 30
-  currentAmmo: 0
-  totalAmmo: 90
-  reloadTime: 2
 --- !u!114 &6542609898455577846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6177995564417039293, guid: 019365582c89d4d4fb25ce45b00af6a2, type: 3}
   shootPoint: {fileID: 4295798609540122050}
-  fireRate: 10
-  weaponType: 0
-  pelletCount: 5
-  spreadAngle: 15
 --- !u!114 &3113214320235001985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +278,7 @@ MonoBehaviour:
   - {fileID: 3229328893422051162}
   - {fileID: 6542609898455577846}
   - {fileID: 3113214320235001985}
+  - {fileID: 8912509086745713900}
   - {fileID: -7604608992868313505}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &8912509086745713900
@@ -341,6 +335,37 @@ MonoBehaviour:
   - {fileID: 1273710581826288747}
   - {fileID: 4461185172615124954}
   _lives: 3
+--- !u!1 &7606967783406864959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7342529295031117114}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7342529295031117114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7606967783406864959}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4.28}
+  m_LocalScale: {x: 0.8653514, y: 0.8653514, z: 0.8653514}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4295798609540122050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5624867426643701798
 PrefabInstance:
   m_ObjectHideFlags: 0

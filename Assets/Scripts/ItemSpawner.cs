@@ -18,7 +18,7 @@ public class ItemSpawner : NetworkBehaviour
 
     private List<Transform> availableSpawnPoints;
     [Networked]
-    private float nextSpawnTime { get; set; }
+    private float nextSpawnTime { get; set; } = float.PositiveInfinity;
 
 
     void Awake()
@@ -36,7 +36,6 @@ public class ItemSpawner : NetworkBehaviour
         if (Time.time >= nextSpawnTime && availableSpawnPoints.Count > 0)
         {
             SpawnRandomItem();
-            SetNextSpawnTime();
         }
     }
     void SpawnRandomItem()
@@ -54,6 +53,9 @@ public class ItemSpawner : NetworkBehaviour
 
         float randomWeight = Random.Range(0, totalWeight);
         SpawnableItem selectedItem = spawnableItems[0];
+        Debug.Log(spawnableItems[0]);
+        Debug.Log(spawnableItems[1]);
+        
 
         float currentWeight = 0;
         foreach (var item in spawnableItems)
@@ -85,7 +87,10 @@ public class ItemSpawner : NetworkBehaviour
     {
         if (!availableSpawnPoints.Contains(spawnPoint))
         {
+            SetNextSpawnTime();
+
             availableSpawnPoints.Add(spawnPoint);
         }
+
     }
 }

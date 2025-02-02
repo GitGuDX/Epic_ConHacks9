@@ -14,9 +14,17 @@ public class GunManager : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other == null) return;
+
         Pickupable pickupable = other.GetComponent<Pickupable>();
         if (pickupable != null)
         {
+            Transform spawnPoint = other.transform.parent;
+
+            // Store reference before destroying
+            ItemSpawner spawner = FindFirstObjectByType<ItemSpawner>();
+
+            // Update gun and shooting component
             if (currentGun != null)
                 Destroy(currentGun);
 
@@ -26,18 +34,23 @@ public class GunManager : MonoBehaviour
                 shootScript.weaponType = pickupable.gunType;
                 shootScript.SetHasGun(true);
             }
-            Destroy(other.gameObject);
 
-            ItemSpawner spawner = FindFirstObjectByType<ItemSpawner>();
-            if (spawner != null)
-                spawner.FreeSpawnPoint(other.transform.parent);
+            // Free spawn point before destroying pickup
+            if (spawner != null && spawnPoint != null)
+            {
+                spawner.FreeSpawnPoint(spawnPoint);
+            }
+
+            // Destroy pickup last
+            Destroy(other.gameObject);
         }
     }
 
-    void SpawnGun(GameObject gunToSpawn)
+    public void SpawnGun(GameObject gunToSpawn)
     {
         currentGun = Instantiate(gunToSpawn, gunHolster.position, gunHolster.rotation);
         currentGun.transform.SetParent(gunHolster);
+        currentGun.GetComponent<Collider>().enabled = false;
         currentGun.transform.localPosition = Vector3.zero;
         currentGun.transform.localRotation = Quaternion.identity;
     }

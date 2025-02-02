@@ -1,3 +1,4 @@
+using System.Linq;
 using Fusion;
 using UnityEngine;
 
@@ -7,15 +8,11 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
     public Transform playerOneSpawn;
     public Transform playerTwoSpawn;
 
-    [Networked]
-    private bool isFirstPlayer { get; set; } = false;
-
     public void PlayerJoined(PlayerRef player)
     {
         if (player == Runner.LocalPlayer)
         {
-            Runner.Spawn(PlayerPrefab, isFirstPlayer ? playerOneSpawn.position : playerTwoSpawn.position, Quaternion.identity);
-            isFirstPlayer = !isFirstPlayer;
+            Runner.Spawn(PlayerPrefab, Runner.ActivePlayers.Count() == 1 ? playerOneSpawn.position : playerTwoSpawn.position, Quaternion.identity);
         }
     }
 }

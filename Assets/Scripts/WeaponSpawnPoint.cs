@@ -6,6 +6,7 @@ public class WeaponSpawnPoint : NetworkBehaviour
     [Header("Weapon Prefabs")]
     public GameObject ak47Prefab;
     public GameObject shotgunPrefab;
+    public GameObject pistolPrefab;
 
     [Header("Spawn Settings")]
     public float minSpawnTime = 5f;
@@ -43,8 +44,17 @@ public class WeaponSpawnPoint : NetworkBehaviour
 
      private void SpawnRandomWeapon()
     {
-        // Remove InputAuthority, use StateAuthority instead
-        GameObject prefabToSpawn = Random.value > 0.5f ? ak47Prefab : shotgunPrefab;
+        // Choose a random value between 0 and 1
+        float randomValue = Random.value;
+        GameObject prefabToSpawn;
+
+        // Randomly choose a weapon to spawn
+        if (randomValue < 0.33f)
+            prefabToSpawn = ak47Prefab;
+        else if (randomValue < 0.66f)
+            prefabToSpawn = shotgunPrefab;
+        else
+            prefabToSpawn = pistolPrefab;
 
         var weaponObject = Runner.Spawn(
             prefabToSpawn,

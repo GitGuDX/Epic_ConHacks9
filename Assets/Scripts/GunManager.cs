@@ -5,6 +5,8 @@ public class GunManager : NetworkBehaviour
 {
     public GameObject gunPrefab;
     public Transform gunHolster;
+    public GunData defaultPistolData; // Add reference to pistol GunData
+
     private GameObject currentGun;
     private Shoot shootScript;
     private GunData currentGunData;
@@ -61,5 +63,14 @@ public class GunManager : NetworkBehaviour
         currentGun.GetComponent<Collider>().enabled = false;
         currentGun.transform.localPosition = Vector3.zero;
         currentGun.transform.localRotation = Quaternion.identity;
+    }
+    public override void Spawned()
+    {
+        // Spawn default gun
+        PickupGun(defaultPistolData.gunPrefab);
+        currentGunData = defaultPistolData;
+        shootScript.SetGunData(currentGunData);
+        shootScript.SetHasGun(true);
+        ammoSystem.SetGunData(currentGunData);
     }
 }

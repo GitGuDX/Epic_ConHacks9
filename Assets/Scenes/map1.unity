@@ -1262,10 +1262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54da3fa4b149ae4cb4d56f663fffc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ak47Prefab:
-    RawGuidValue: 4c194b80b0e6fe84cb9b0d1318e31517
-  shotgunPrefab:
-    RawGuidValue: c38d1d21c6b84bf4e83d705c6812ca10
+  ak47Prefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
+  shotgunPrefab: {fileID: 6142003397665915863, guid: c38d1d21c6b84bf4e83d705c6812ca10, type: 3}
   minSpawnTime: 5
   maxSpawnTime: 10
 --- !u!4 &67467376
@@ -7697,7 +7695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2428830809
   ObjectInterest: 1
-  Flags: 786433
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 475227144}
@@ -7714,10 +7712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54da3fa4b149ae4cb4d56f663fffc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ak47Prefab:
-    RawGuidValue: 4c194b80b0e6fe84cb9b0d1318e31517
-  shotgunPrefab:
-    RawGuidValue: c38d1d21c6b84bf4e83d705c6812ca10
+  ak47Prefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
+  shotgunPrefab: {fileID: 6142003397665915863, guid: c38d1d21c6b84bf4e83d705c6812ca10, type: 3}
   minSpawnTime: 5
   maxSpawnTime: 10
 --- !u!1 &476086180 stripped
@@ -33384,10 +33380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54da3fa4b149ae4cb4d56f663fffc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ak47Prefab:
-    RawGuidValue: 4c194b80b0e6fe84cb9b0d1318e31517
-  shotgunPrefab:
-    RawGuidValue: c38d1d21c6b84bf4e83d705c6812ca10
+  ak47Prefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
+  shotgunPrefab: {fileID: 6142003397665915863, guid: c38d1d21c6b84bf4e83d705c6812ca10, type: 3}
   minSpawnTime: 5
   maxSpawnTime: 10
 --- !u!4 &2098303051

@@ -24,10 +24,14 @@ public class ItemSpawner : NetworkBehaviour
     void Awake()
     {
         availableSpawnPoints = new List<Transform>(spawnPoints);
+    }
+
+    public override void Spawned()
+    {
         SetNextSpawnTime();
     }
 
-    void Update()
+    public override void FixedUpdateNetwork()
     {
         if (Time.time >= nextSpawnTime && availableSpawnPoints.Count > 0)
         {
@@ -35,7 +39,6 @@ public class ItemSpawner : NetworkBehaviour
             SetNextSpawnTime();
         }
     }
-
     void SpawnRandomItem()
     {
         if (availableSpawnPoints.Count == 0) return;
@@ -67,8 +70,6 @@ public class ItemSpawner : NetworkBehaviour
         Runner.Spawn(selectedItem.itemPrefab,
             spawnPoint.position,
             spawnPoint.rotation);
-
-
 
         // Remove used spawn point
         availableSpawnPoints.RemoveAt(spawnIndex);

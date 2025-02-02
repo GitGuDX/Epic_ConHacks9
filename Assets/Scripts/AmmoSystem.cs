@@ -6,7 +6,7 @@ public class AmmoSystem : MonoBehaviour
 {
     private GunData currentGunData;
     private Boolean isReloading = false;
-    public int currentAmmo { get; private set; }
+    public int currentAmmo { get; private set; } = 0;
     public int totalAmmo { get; private set; }
 
     public void SetGunData(GunData newGunData)

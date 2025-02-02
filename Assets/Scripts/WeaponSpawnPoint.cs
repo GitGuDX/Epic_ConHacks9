@@ -28,17 +28,40 @@ public class WeaponSpawnPoint : NetworkBehaviour
         }
     }
 
-    private void SpawnRandomWeapon()
+     private void SpawnRandomWeapon()
     {
+        // Remove InputAuthority, use StateAuthority instead
         NetworkPrefabRef prefabToSpawn = Random.value > 0.5f ? ak47Prefab : shotgunPrefab;
 
-        var weaponObject = Runner.Spawn(prefabToSpawn, transform.position, transform.rotation, Object.InputAuthority, (runner, obj) =>
-        {
-            obj.transform.SetParent(transform);
-        });
+        var weaponObject = Runner.Spawn(
+            prefabToSpawn, 
+            transform.position, 
+            transform.rotation, 
+            Runner.LocalPlayer, // Use LocalPlayer instead of InputAuthority
+            (runner, obj) =>
+            {
+                // Set position before parenting
+                obj.transform.position = transform.position;
+                obj.transform.rotation = transform.rotation;
+                
+                // Use Fusion's object parenting
+                var networkObject = obj.GetComponent<NetworkObject>();
+                if (networkObject != null)
+                {
+                    networkObject.transform.SetParent(transform);
+                }
+            });
 
         SpawnedWeapon = weaponObject;
         IsOccupied = true;
+    }
+
+    public override void Spawned()
+    {
+        if (Object.HasStateAuthority)
+        {
+            StartSpawnTimer();
+        }
     }
 
     public void OnWeaponPickedUp()

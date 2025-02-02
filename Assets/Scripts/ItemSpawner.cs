@@ -15,11 +15,11 @@ public class ItemSpawner : NetworkBehaviour
     public Transform[] spawnPoints;
     public float minSpawnTime = 10f;
     public float maxSpawnTime = 30f;
-    
+
     private List<Transform> availableSpawnPoints;
     [Networked]
     private float nextSpawnTime { get; set; }
-    
+
 
     void Awake()
     {
@@ -43,7 +43,7 @@ public class ItemSpawner : NetworkBehaviour
         // Select random spawn point
         int spawnIndex = Random.Range(0, availableSpawnPoints.Count);
         Transform spawnPoint = availableSpawnPoints[spawnIndex];
-        
+
         // Select random item based on weights
         float totalWeight = 0;
         foreach (var item in spawnableItems)
@@ -51,7 +51,7 @@ public class ItemSpawner : NetworkBehaviour
 
         float randomWeight = Random.Range(0, totalWeight);
         SpawnableItem selectedItem = spawnableItems[0];
-        
+
         float currentWeight = 0;
         foreach (var item in spawnableItems)
         {
@@ -64,11 +64,11 @@ public class ItemSpawner : NetworkBehaviour
         }
 
         // Spawn the item
-        Runner.Spawn(selectedItem.itemPrefab, 
-            spawnPoint.position, 
+        Runner.Spawn(selectedItem.itemPrefab,
+            spawnPoint.position,
             spawnPoint.rotation);
 
-        
+
 
         // Remove used spawn point
         availableSpawnPoints.RemoveAt(spawnIndex);

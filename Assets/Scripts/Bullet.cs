@@ -19,15 +19,12 @@ public class Bullet : MonoBehaviour
         rb.MovePosition(transform.position + move * speed * Time.deltaTime);
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player hit, lives removed");
-            other.GetComponent<Lives>().Damage();
-            
+            other.GetComponent<Lives>().RPC_Damage();
+            Destroy(gameObject);
         }
     }
-
 }

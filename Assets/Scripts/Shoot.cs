@@ -12,7 +12,7 @@ public class Shoot : NetworkBehaviour
     private float timeBetweenShots;
     private float nextShotTime;
     private AmmoSystem ammoSystem;
-    private bool hasGun = false;
+    private bool hasGun = true;
     private bool isShooting = false;
 
     void Awake()

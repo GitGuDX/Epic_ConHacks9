@@ -1,5 +1,6 @@
 using UnityEngine;
 using Fusion;
+
 public class GunManager : NetworkBehaviour
 {
     public GameObject gunPrefab;
@@ -9,8 +10,7 @@ public class GunManager : NetworkBehaviour
     private GunData currentGunData;
     private AmmoSystem ammoSystem;
 
-
-    void Start()
+    void Awake()
     {
         shootScript = GetComponent<Shoot>();
         ammoSystem = GetComponent<AmmoSystem>();  // AmmoSystem on player
@@ -18,7 +18,6 @@ public class GunManager : NetworkBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
         if (other == null) return;
 
         Pickupable pickupable = other.GetComponent<Pickupable>();
@@ -32,35 +31,34 @@ public class GunManager : NetworkBehaviour
             Debug.LogError("No GunData assigned to Pickupable on: " + other.name);
             return;
         }
+
+        Transform spawnPoint = other.transform.parent;
+
+        // Store reference before destroying
+        WeaponSpawnPoint spawner = spawnPoint?.GetComponent<WeaponSpawnPoint>();
+
+        // Update gun and shooting component
+        if (currentGun != null)
         {
-            Transform spawnPoint = other.transform.parent;
-
-            // Store reference before destroying
-            WeaponSpawnPoint spawner = spawnPoint?.GetComponent<WeaponSpawnPoint>();
-
-            // Update gun and shooting component
-            if (currentGun != null)
-            {
-                Destroy(currentGun);
-            }
-
-            // Spawn new gun and update data
-            PickupGun(pickupable.gunData.gunPrefab);
-            
-            if (shootScript != null)
-            {
-                currentGunData = pickupable.gunData;
-                shootScript.SetGunData(currentGunData);
-                shootScript.SetHasGun(true);
-                ammoSystem.SetGunData(currentGunData);
-            }
-
-            // Notify spawn point of pickup
-            spawner?.OnWeaponPickedUp();
-
-            // Destroy pickup last
-            Runner.Despawn(other.GetComponent<NetworkObject>());
+            Destroy(currentGun);
         }
+
+        // Spawn new gun and update data
+        PickupGun(pickupable.gunData.gunPrefab);
+
+        if (shootScript != null)
+        {
+            currentGunData = pickupable.gunData;
+            shootScript.SetGunData(currentGunData);
+            shootScript.SetHasGun(true);
+            ammoSystem.SetGunData(currentGunData);
+        }
+
+        // Notify spawn point of pickup
+        spawner?.OnWeaponPickedUp();
+
+        // Destroy pickup last
+        Runner.Despawn(other.GetComponent<NetworkObject>());
     }
 
     //Spawn gun at holster position when picked up

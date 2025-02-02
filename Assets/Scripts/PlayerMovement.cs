@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using Fusion;
 using UnityEngine;
-using TMPro;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -11,7 +9,6 @@ public class PlayerMovement : NetworkBehaviour
     public float dodgeSpeed = 10f;
     public float dodgeDuration = 0.2f;
 
-    private TextMeshProUGUI pingText;
     private Rigidbody rb;
     private bool isDodging = false;
     private bool isDodgingKeyPressed = false;
@@ -22,7 +19,6 @@ public class PlayerMovement : NetworkBehaviour
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         originalScale = transform.localScale;
-        pingText = GameObject.Find("PingText").GetComponent<TextMeshProUGUI>();
     }
 
     public override void Spawned()
@@ -54,8 +50,6 @@ public class PlayerMovement : NetworkBehaviour
 
     public override void FixedUpdateNetwork()
     {
-        pingText.text = $"{Math.Round(Runner.GetPlayerRtt(default) * 1000)}ms";
-
         if (!isDodging)
         {
             MovePlayer();

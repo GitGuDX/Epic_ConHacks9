@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 822997767
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 786433
   NestedObjects: []
   NetworkedBehaviours: []
   ForceRemoteRenderTimeframe: 0

@@ -160,7 +160,6 @@ MonoBehaviour:
   sprintSpeed: 15
   dodgeSpeed: 20
   dodgeDuration: 0.3
-  camera: {fileID: 244804154302400746, guid: 723340250d731db5eb39d459b1f5dffe, type: 3}
 --- !u!114 &7934151002700761671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7dc36bbf7924e158613d5e7da9ba12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 244804154302400746, guid: 723340250d731db5eb39d459b1f5dffe, type: 3}
 --- !u!114 &1891666577214263010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,5 +247,6 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 3229328893422051162}
+  - {fileID: 6542609898455577846}
   - {fileID: 3113214320235001985}
   ForceRemoteRenderTimeframe: 0

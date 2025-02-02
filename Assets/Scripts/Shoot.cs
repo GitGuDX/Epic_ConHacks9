@@ -1,7 +1,7 @@
+using Fusion;
 using UnityEngine;
-using System.Collections;
 
-public class Shoot : MonoBehaviour
+public class Shoot : NetworkBehaviour
 {
     public GameObject bullet;
     public Transform shootPoint;
@@ -12,24 +12,29 @@ public class Shoot : MonoBehaviour
     private float timeBetweenShots;
     private float nextShotTime;
     private AmmoSystem ammoSystem;
+    private bool hasGun = false;
+    private bool isShooting = false;
 
-    void Start()
+    void Awake()
     {
         ammoSystem = GetComponent<AmmoSystem>();
         timeBetweenShots = 1f / fireRate;
         nextShotTime = Time.time;
     }
 
-    private bool hasGun = false;
+    void Update() {
+        isShooting = Input.GetMouseButton(0);
+    }
 
-    void Update()
+    public override void FixedUpdateNetwork()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextShotTime && ammoSystem.CanShoot() && hasGun)
+        if (isShooting && Time.time >= nextShotTime && ammoSystem.CanShoot() && hasGun)
         {
             ShootBullet();
             ammoSystem.UseAmmo();
             nextShotTime = Time.time + timeBetweenShots;
         }
+        isShooting = false;
     }
 
     public void SetHasGun(bool value)
@@ -52,7 +57,7 @@ public class Shoot : MonoBehaviour
 
     private void ShootRifle()
     {
-        GameObject instBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        GameObject instBullet = Runner.Spawn(bullet, shootPoint.position, shootPoint.rotation).gameObject;
         Vector3 direction = transform.forward;
         instBullet.GetComponent<Bullet>().move = direction;
         Physics.IgnoreCollision(instBullet.GetComponent<Collider>(), GetComponent<Collider>());
@@ -64,9 +69,9 @@ public class Shoot : MonoBehaviour
         {
             float randomSpreadX = Random.Range(-spreadAngle, spreadAngle);
             float randomSpreadY = Random.Range(-spreadAngle, spreadAngle);
-            
+
             Quaternion spreadRotation = Quaternion.Euler(randomSpreadX, randomSpreadY, 0) * transform.rotation;
-            GameObject instBullet = Instantiate(bullet, shootPoint.position, spreadRotation);
+            GameObject instBullet = Runner.Spawn(bullet, shootPoint.position, spreadRotation).gameObject;
             Vector3 direction = spreadRotation * Vector3.forward;
             instBullet.GetComponent<Bullet>().move = direction;
             Physics.IgnoreCollision(instBullet.GetComponent<Collider>(), GetComponent<Collider>());

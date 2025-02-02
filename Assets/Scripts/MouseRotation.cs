@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class MouseRotation : MonoBehaviour
 {
-    public Camera mainCamera;
+    private Camera mainCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (mainCamera == null)
-        {
-            mainCamera = Camera.main;
-        }
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame

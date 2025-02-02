@@ -27,6 +27,18 @@ public class Bullet : NetworkBehaviour
         transform.position += MovementDirection * speed * Runner.DeltaTime;
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Damage player
+            other.GetComponent<Lives>().RPC_Damage();
+            
+            // Destroy bullet
+            Runner.Despawn(Object);
+        }
+    }
+
     private IEnumerator DestroyAfterDelay()
     {
         yield return new WaitForSeconds(5f);

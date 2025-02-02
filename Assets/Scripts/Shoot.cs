@@ -47,11 +47,28 @@ public class Shoot : NetworkBehaviour
             case WeaponType.Shotgun:
                 ShootShotgun();
                 break;
+            case WeaponType.Pistol:
+                ShootPistol();
+                break;
         }
+    }
+
+    private void ShootPistol()
+    {
+        // Small random spread for pistol
+        float randomSpreadX = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
+        float randomSpreadY = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
+        
+        Quaternion spreadRotation = Quaternion.Euler(randomSpreadX, randomSpreadY, 0) * shootPoint.rotation;
+        var spawnedBullet = Runner.Spawn(bullet, shootPoint.position, spreadRotation);
+        spawnedBullet.GetComponent<Bullet>().MovementDirection = spreadRotation * Vector3.forward;
     }
 
     private void ShootRifle()
     {
+        float randomSpreadX = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
+        float randomSpreadY = Random.Range(-currentGunData.spreadAngle, currentGunData.spreadAngle);
+
         var spawnedBullet = Runner.Spawn(bullet, shootPoint.position, shootPoint.rotation);
         spawnedBullet.GetComponent<Bullet>().MovementDirection = shootPoint.forward;
     }

@@ -920,7 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2142406857
   ObjectInterest: 1
-  Flags: 1
+  Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1404666727}
@@ -1084,6 +1084,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 2862312890596830622, guid: 7e2dbfe34a21b434ea2fe2e7e187fb0c, type: 3}
+  playerOneSpawn: {fileID: 0}
+  playerTwoSpawn: {fileID: 0}
 --- !u!114 &1918542433
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,8 +18,7 @@ public class GunManager : NetworkBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Check if object has state authority
-        if (!Object.HasStateAuthority) return;
+
         if (other == null) return;
 
         Pickupable pickupable = other.GetComponent<Pickupable>();

@@ -205,6 +205,9 @@ PrefabInstance:
       addedObject: {fileID: 6175736778060396573}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: df7c6ed511cf97c4893f1cdea436cd69, type: 3}
       insertIndex: -1
+      addedObject: {fileID: -7460352942269770271}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: df7c6ed511cf97c4893f1cdea436cd69, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6326113173769220260}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: df7c6ed511cf97c4893f1cdea436cd69, type: 3}
       insertIndex: -1
@@ -316,6 +319,21 @@ MonoBehaviour:
   sprintSpeed: 10
   dodgeSpeed: 13
   dodgeDuration: 0.3
+--- !u!114 &-7460352942269770271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847492010975971392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8236020d3157ea04c9cc1303e570971e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPrefab: {fileID: 2074594907806527387, guid: c41a42e81e415754399599e3bbd70697, type: 3}
+  gunHolster: {fileID: 4836141399214947837}
+  defaultPistolData: {fileID: 11400000, guid: 7c58f15e2028fb64fbf37c4679dfb9c7, type: 2}
 --- !u!114 &6326113173769220260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +352,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6175736778060396573}
+  - {fileID: -7460352942269770271}
   - {fileID: 116543190217928458}
   - {fileID: 5006454337719870925}
   - {fileID: 846315366001689632}

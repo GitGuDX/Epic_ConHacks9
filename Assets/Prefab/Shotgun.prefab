@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 6142003397665915863}
+  gunType: 1

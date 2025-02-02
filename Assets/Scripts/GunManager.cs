@@ -21,10 +21,11 @@ public class GunManager : MonoBehaviour
                 Destroy(currentGun);
 
             SpawnGun(pickupable.gunPrefab);
-            // Update weapon type in Shoot script
             if (shootScript != null)
+            {
                 shootScript.weaponType = pickupable.gunType;
-
+                shootScript.SetHasGun(true);
+            }
             Destroy(other.gameObject);
 
             ItemSpawner spawner = FindFirstObjectByType<ItemSpawner>();

@@ -20,20 +20,21 @@ public class Shoot : MonoBehaviour
         nextShotTime = Time.time;
     }
 
+    private bool hasGun = false;
+
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextShotTime && ammoSystem.CanShoot())
+        if (Input.GetMouseButton(0) && Time.time >= nextShotTime && ammoSystem.CanShoot() && hasGun)
         {
             ShootBullet();
             ammoSystem.UseAmmo();
             nextShotTime = Time.time + timeBetweenShots;
         }
+    }
 
-        // Example weapon switching with number keys
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            weaponType = WeaponType.Rifle;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            weaponType = WeaponType.Shotgun;
+    public void SetHasGun(bool value)
+    {
+        hasGun = value;
     }
 
      protected virtual void ShootBullet()

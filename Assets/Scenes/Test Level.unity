@@ -604,15 +604,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnableItems:
   - itemPrefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
-    spawnWeight: 1
+    spawnWeight: 3
   - itemPrefab: {fileID: 6142003397665915863, guid: c38d1d21c6b84bf4e83d705c6812ca10, type: 3}
     spawnWeight: 1
   spawnPoints:
   - {fileID: 1524615404}
   - {fileID: 1709972299}
   - {fileID: 1348746548}
-  minSpawnTime: 5
-  maxSpawnTime: 20
+  minSpawnTime: 1
+  maxSpawnTime: 5
 --- !u!4 &1565799547
 Transform:
   m_ObjectHideFlags: 0

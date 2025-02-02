@@ -7697,7 +7697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 2428830809
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 475227144}
@@ -12524,7 +12524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  offset: {x: 0.05, y: 4.6, z: -9.5}
+  offset: {x: 0.05, y: 17, z: -10.13}
   tiltAngle: {x: 45, y: 0, z: 0}
 --- !u!114 &810217990
 MonoBehaviour:

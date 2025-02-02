@@ -710,18 +710,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 4601417146949781777, guid: 4c194b80b0e6fe84cb9b0d1318e31517, type: 3}
   gunHolster: {fileID: 734984976}
---- !u!114 &2034949608
-MonoBehaviour:
+--- !u!136 &2034949617
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034949597}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c80f6dfef5eff4185d21f4e014f0b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0.00000023841858, z: -0.00000009126961}
 --- !u!1 &2101471865 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: c77c37a6afc6e6b469eab4a0cfd7556a, type: 3}
@@ -854,6 +865,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 378733661450667629, guid: 2e26a63500e541945883e791a69a2cd5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1590914596290620155, guid: 2e26a63500e541945883e791a69a2cd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.1476412
@@ -894,6 +909,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2530038278727628115, guid: 2e26a63500e541945883e791a69a2cd5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.58
+      objectReference: {fileID: 0}
     - target: {fileID: 3163507068082806712, guid: 2e26a63500e541945883e791a69a2cd5, type: 3}
       propertyPath: m_Name
       value: PlayerObjectWithGun
@@ -930,7 +949,7 @@ PrefabInstance:
       addedObject: {fileID: 2034949607}
     - targetCorrespondingSourceObject: {fileID: 4555888084146281743, guid: 2e26a63500e541945883e791a69a2cd5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2034949608}
+      addedObject: {fileID: 2034949617}
   m_SourcePrefab: {fileID: 100100000, guid: 2e26a63500e541945883e791a69a2cd5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

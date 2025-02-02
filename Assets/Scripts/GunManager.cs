@@ -5,30 +5,28 @@ public class GunManager : MonoBehaviour
     public GameObject gunPrefab;
     public Transform gunHolster;
     private GameObject currentGun;
+    private Shoot shootScript;
 
     void Start()
     {
-       // if (gunPrefab != null)
-        //    SpawnGun(gunPrefab);
+        shootScript = GetComponent<Shoot>();
     }
 
-    // OnTriggerEnter is called when the Player collider enters the trigger
     void OnTriggerEnter(Collider other)
     {
         Pickupable pickupable = other.GetComponent<Pickupable>();
         if (pickupable != null)
         {
-            // Destroy current gun if exists
             if (currentGun != null)
                 Destroy(currentGun);
 
-            // Spawn new gun
             SpawnGun(pickupable.gunPrefab);
+            // Update weapon type in Shoot script
+            if (shootScript != null)
+                shootScript.weaponType = pickupable.gunType;
 
-            // Destroy pickup
             Destroy(other.gameObject);
 
-            // Free spawn point
             ItemSpawner spawner = FindFirstObjectByType<ItemSpawner>();
             if (spawner != null)
                 spawner.FreeSpawnPoint(other.transform.parent);

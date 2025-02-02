@@ -9,6 +9,9 @@ public class PlayerMovement : NetworkBehaviour
     public float dodgeSpeed = 10f;
     public float dodgeDuration = 0.2f;
 
+    private Animator animator;
+    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+
     private Rigidbody rb;
     private bool isDodging = false;
     private bool isDodgingKeyPressed = false;
@@ -17,6 +20,8 @@ public class PlayerMovement : NetworkBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         originalScale = transform.localScale;
     }
@@ -60,6 +65,11 @@ public class PlayerMovement : NetworkBehaviour
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
+
+        // Update animation state
+        bool isMoving = Mathf.Abs(moveX) > 0.1f || Mathf.Abs(moveZ) > 0.1f;
+        Debug.Log(isMoving);
+        animator.SetBool(IsWalking, isMoving);
 
         float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
 

@@ -16,7 +16,6 @@ public class PlayerMovement : NetworkBehaviour
     private bool isDodging = false;
     private bool isDodgingKeyPressed = false;
     private Vector3 originalScale;
-    private Camera playerCamera;
 
     private void Awake()
     {
@@ -30,9 +29,8 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (HasStateAuthority)
         {
-            Debug.Log(Camera.main);
-            playerCamera = Camera.main;
-            playerCamera.GetComponent<CameraFollow>().player = transform;
+            Camera.main.GetComponent<CameraFollow>().player = transform;
+            GetComponent<Renderer>().material.color = Color.blue;
         }
     }
 

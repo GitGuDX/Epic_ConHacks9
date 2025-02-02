@@ -4,8 +4,8 @@ using Fusion;
 public class WeaponSpawnPoint : NetworkBehaviour
 {
     [Header("Weapon Prefabs")]
-    public NetworkPrefabRef ak47Prefab;
-    public NetworkPrefabRef shotgunPrefab;
+    public GameObject ak47Prefab;
+    public GameObject shotgunPrefab;
 
     [Header("Spawn Settings")]
     public float minSpawnTime = 5f;
@@ -20,6 +20,12 @@ public class WeaponSpawnPoint : NetworkBehaviour
     [Networked]
     private bool IsOccupied { get; set; } = false;
 
+    void Update() {
+        if (SpawnedWeapon != null) {
+            SpawnedWeapon.transform.position = transform.position;
+        }
+    }
+
     public override void FixedUpdateNetwork()
     {
         if (!IsOccupied && Runner.SimulationTime >= NextSpawnTime)
@@ -31,19 +37,19 @@ public class WeaponSpawnPoint : NetworkBehaviour
      private void SpawnRandomWeapon()
     {
         // Remove InputAuthority, use StateAuthority instead
-        NetworkPrefabRef prefabToSpawn = Random.value > 0.5f ? ak47Prefab : shotgunPrefab;
+        GameObject prefabToSpawn = Random.value > 0.5f ? ak47Prefab : shotgunPrefab;
 
         var weaponObject = Runner.Spawn(
-            prefabToSpawn, 
-            transform.position, 
-            transform.rotation, 
+            prefabToSpawn,
+            transform.position,
+            transform.rotation,
             Runner.LocalPlayer, // Use LocalPlayer instead of InputAuthority
             (runner, obj) =>
             {
                 // Set position before parenting
                 obj.transform.position = transform.position;
                 obj.transform.rotation = transform.rotation;
-                
+
                 // Use Fusion's object parenting
                 var networkObject = obj.GetComponent<NetworkObject>();
                 if (networkObject != null)

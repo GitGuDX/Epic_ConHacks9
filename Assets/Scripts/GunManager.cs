@@ -21,16 +21,8 @@ public class GunManager : NetworkBehaviour
         if (other == null) return;
 
         Pickupable pickupable = other.GetComponent<Pickupable>();
-        if (pickupable == null)
-        {
-            Debug.LogWarning("No Pickupable component found on: " + other.name);
-            return;
-        }
-         if (pickupable?.gunData == null)
-        {
-            Debug.LogError("No GunData assigned to Pickupable on: " + other.name);
-            return;
-        }
+        if (pickupable == null) return;
+        if (pickupable.gunData == null) Debug.Log("FUCK");
 
         Transform spawnPoint = other.transform.parent;
 

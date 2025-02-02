@@ -9,17 +9,6 @@ public class AmmoSystem : MonoBehaviour
     public int currentAmmo { get; private set; } = 0;
     public int totalAmmo { get; private set; }
 
-    public void SetGunData(GunData newGunData)
-    {
-        currentGunData = newGunData;
-        currentAmmo = newGunData.magazineSize;
-        totalAmmo = newGunData.maxTotalAmmo;
-    }
-    void Start()
-    {
-        SetGunData(currentGunData);
-    }
-
     void Update()
     {
         //Checks if the player presses the R key and the player is not reloading and the current ammo is less than the magazine size
@@ -28,6 +17,13 @@ public class AmmoSystem : MonoBehaviour
             //Starts the reload coroutine
             StartCoroutine(Reload());
         }
+    }
+
+    public void SetGunData(GunData newGunData)
+    {
+        currentGunData = newGunData;
+        currentAmmo = newGunData.magazineSize;
+        totalAmmo = newGunData.maxTotalAmmo;
     }
 
     private IEnumerator Reload()
